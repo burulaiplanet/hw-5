@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react'
 import './App.css';
+import NewAddForm from './components/NewAddForm';
+ 
+const addData=[]
+
 
 function App() {
+  const [data, setData] = useState(addData)
+	function saveDatToList(dataWithId) {
+		setData((prevState) => {
+			return [ ...prevState,dataWithId]
+		})
+	}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NewAddForm onSaveDatToList={saveDatToList}
+	addData={data}
+	
+	/>
   );
 }
+
 
 export default App;
